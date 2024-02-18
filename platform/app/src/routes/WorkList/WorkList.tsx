@@ -28,7 +28,8 @@ import {
   LoadingIndicatorProgress,
   useSessionStorage,
 } from '@ohif/ui';
-
+import LandingArea from '../../../../ui/src/components/LandingArea/LandingArea';
+import Local from '../Local/Local';
 import i18n from '@ohif/i18n';
 
 const { sortBySeriesDate } = utils;
@@ -254,11 +255,13 @@ function WorkList({
     const studyDate =
       date &&
       moment(date, ['YYYYMMDD', 'YYYY.MM.DD'], true).isValid() &&
-      moment(date, ['YYYYMMDD', 'YYYY.MM.DD']).format(t('Common:localDateFormat','MMM-DD-YYYY'));
+      moment(date, ['YYYYMMDD', 'YYYY.MM.DD']).format(t('Common:localDateFormat', 'MMM-DD-YYYY'));
     const studyTime =
       time &&
       moment(time, ['HH', 'HHmm', 'HHmmss', 'HHmmss.SSS']).isValid() &&
-      moment(time, ['HH', 'HHmm', 'HHmmss', 'HHmmss.SSS']).format(t('Common:localTimeFormat', 'hh:mm A'));
+      moment(time, ['HH', 'HHmm', 'HHmmss', 'HHmmss.SSS']).format(
+        t('Common:localTimeFormat', 'hh:mm A')
+      );
 
     return {
       dataCY: `studyRow-${studyInstanceUid}`,
@@ -496,7 +499,9 @@ function WorkList({
         isReturnEnabled={false}
         WhiteLabeling={appConfig.whiteLabeling}
       />
-      <div className="ohif-scrollbar flex grow flex-col overflow-y-auto">
+
+      <div className=" flex grow flex-col ">
+        <LandingArea />
         <StudyListFilter
           numOfStudies={pageNumber * resultsPerPage > 100 ? 101 : numOfStudies}
           filtersMeta={filtersMeta}
@@ -509,6 +514,7 @@ function WorkList({
             dataSourceConfigurationComponent ? () => dataSourceConfigurationComponent() : undefined
           }
         />
+
         {hasStudies ? (
           <div className="flex grow flex-col">
             <StudyListTable

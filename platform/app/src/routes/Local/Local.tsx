@@ -125,11 +125,14 @@ function Local({ modePath }: LocalProps) {
         >
           <div className="flex h-screen w-screen items-center justify-center ">
             <div className="bg-secondary-dark mx-auto space-y-2 rounded-lg py-8 px-8 drop-shadow-md">
-              <img
+              {/* <img
                 className="mx-auto block h-14"
                 src="./ohif-logo.svg"
                 alt="OHIF"
-              />
+              /> */}
+              <div className="ai-logo-font text-primary-light text-center text-4xl text-white">
+                AI DICOM VIEWER
+              </div>
               <div className="space-y-2 pt-4 text-center">
                 {dropInitiated ? (
                   <div className="flex flex-col items-center justify-center pt-48">
@@ -137,10 +140,10 @@ function Local({ modePath }: LocalProps) {
                   </div>
                 ) : (
                   <div className="space-y-2">
-                    <p className="text-base text-blue-300">
+                    {/* <p className="text-base text-blue-300">
                       Note: You data is not uploaded to any server, it will stay in your local
                       browser application
-                    </p>
+                    </p> */}
                     <p className="text-xg text-primary-active pt-6 font-semibold">
                       Drag and Drop DICOM files here to load them in the Viewer
                     </p>

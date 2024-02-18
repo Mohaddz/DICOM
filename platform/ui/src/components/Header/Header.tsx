@@ -30,13 +30,34 @@ function Header({
 
   return (
     <NavBar
-      className="justify-between border-b-4 border-black"
+      className="justify-between border-black"
       isSticky={isSticky}
     >
-      <div className="flex flex-1 justify-between">
-        <div className="flex items-center">
-          {/* // TODO: Should preserve filter/sort
-              // Either injected service? Or context (like react router's `useLocation`?) */}
+      <div className="container mx-auto flex flex-1 justify-between">
+        <div
+          className={classNames(
+            'mr-3 inline-flex items-center',
+            isReturnEnabled && 'cursor-pointer'
+          )}
+          onClick={onClickReturn}
+          data-cy="return-to-work-list"
+        >
+          {isReturnEnabled && (
+            <Icon
+              name="chevron-left"
+              className="text-primary-active w-8"
+            />
+          )}
+          <div className="ai-logo-font text-primary-light ml-4 text-3xl text-white">
+            {/* {WhiteLabeling?.createLogoComponentFn?.(React, props) || <Svg name="logo-ohif" />} */}
+            AI DICOM VIEWER
+          </div>
+        </div>
+        <div className="flex items-center">{children}</div>
+
+        {/* <div className="flex items-center">
+          {/* // TODO: Should preserve filter/sort // Either injected service? Or context (like react
+          router's `useLocation`?)
           <div
             className={classNames(
               'mr-3 inline-flex items-center',
@@ -84,7 +105,43 @@ function Header({
               <Icon name="chevron-down" />
             </IconButton>
           </Dropdown>
-        </div>
+        </div>  */}
+
+        <button
+          onClick={() => document.getElementById('my_modal_1').showModal()}
+          className="text-primary-light ml-4 flex items-center"
+        >
+          <div>About Us</div>
+        </button>
+
+        <dialog
+          id="my_modal_1"
+          className="modal"
+        >
+          <div className="modal-box bg-primary-dark">
+            <h3 className="text-primary-light text-center text-2xl font-bold">About Us</h3>
+            <p className="text-white">Team Members:</p>
+            <hr />
+            <div className="py-4 text-white">
+              <p>Mouhana Almouhana </p>
+              <p>Email: MouhanaAlmouhana@gmail.com</p>
+            </div>
+            <div className="py-4 text-white">
+              <p>Mohammed Alnamri </p>
+              <p>Email: MouhanaAlmouhana@gmail.com</p>
+            </div>
+            <div className="py-4 text-white">
+              <p>Osama Aldosari </p>
+              <p>Email: MouhanaAlmouhana@gmail.com</p>
+            </div>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="text-primary-light">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </div>
     </NavBar>
   );
